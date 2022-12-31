@@ -1,14 +1,13 @@
 import type {NextPage} from 'next';
-import Link from 'next/link';
 import Layout from '../components/layouts/Layout';
+import {useState} from 'react';
+import DateInput from '../components/DateInput';
 
 const Home: NextPage = () => {
+  const [date, setDate] = useState(new Date());
   return (
     <Layout>
-      <div>hogehoge</div>
-      <div className='btn btn-primary'>
-        <Link href='/page2'>link to page2</Link>
-      </div>
+      <DateInput date={date} setDate={setDate} />
     </Layout>
   );
 };
