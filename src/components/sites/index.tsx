@@ -5,11 +5,13 @@ import DateInput from '../DateInput';
 
 const SitesContainer = () => {
   const [date, setDate] = useState(new Date());
-  const sites = useSites(date);
+  const [sites, setSites] = useSites(date);
 
-  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
     sites.map((site) => {
-      window.open(site.url, '_blank');
+      if (site.checked) {
+        window.open(site.url, '_blank');
+      }
     });
   };
 
@@ -19,7 +21,7 @@ const SitesContainer = () => {
       <button className='btn my-2' onClick={handleClick}>
         Open Links
       </button>
-      <CheckBoxList names={sites.map((site) => site.name)} />
+      <CheckBoxList sites={sites} setSites={setSites} />
     </div>
   );
 };

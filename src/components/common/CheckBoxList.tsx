@@ -1,4 +1,10 @@
-import React, {useState, ChangeEventHandler, MouseEventHandler} from 'react';
+import React, {
+  ChangeEventHandler,
+  MouseEventHandler,
+  Dispatch,
+  SetStateAction,
+} from 'react';
+import {SitesType} from '../../hooks/useSites';
 
 type CheckBoxType = {
   id: string;
@@ -9,13 +15,9 @@ type CheckBoxType = {
 };
 
 type CheckBoxListType = {
-  names: string[];
+  sites: SitesType;
+  setSites: Dispatch<SetStateAction<SitesType>>;
 };
-
-type ItemsType = {
-  name: string;
-  checked: boolean;
-}[];
 
 const CheckBox = ({
   id,
@@ -37,45 +39,30 @@ const CheckBox = ({
   );
 };
 
-const CheckBoxList = ({names}: CheckBoxListType) => {
-  const [items, setItems] = useState<ItemsType>(
-    names.map((name) => ({
-      name,
-      checked: true,
-    })),
-  );
-
+const CheckBoxList = ({sites, setSites}: CheckBoxListType) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setItems((items) =>
-      items.map((item) => ({
-        ...item,
-        checked: e.target.id === item.name ? e.target.checked : item.checked,
+    setSites((sites) =>
+      sites.map((site) => ({
+        ...site,
+        checked: e.target.id === site.name ? e.target.checked : site.checked,
       })),
     );
   };
 
-  const sendData: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
-    console.log(items);
-  };
-
   return (
     <div>
-      {items.map((item) => (
-        <label key={item.name} className='flex items-center justify-start my-2'>
+      {sites.map((site) => (
+        <label key={site.name} className='flex items-center justify-start my-2'>
           <CheckBox
-            id={item.name}
-            value={item.name}
+            id={site.name}
+            value={site.name}
             onChange={handleChange}
-            checked={item.checked}
+            checked={site.checked}
             className='mr-2'
           />
-          <div>{item.name}</div>
+          <div>{site.name}</div>
         </label>
       ))}
-      <button onClick={sendData} className='btn btn-primary'>
-        確認
-      </button>
     </div>
   );
 };
