@@ -1,6 +1,6 @@
 import {format} from 'date-fns';
 import {useState, useEffect} from 'react';
-import {SITES} from '../components/const/sites';
+import {SITES} from '../const/sites';
 
 const useSites = (date: Date) => {
   const [sites, setSites] = useState(
