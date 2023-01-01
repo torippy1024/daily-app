@@ -12,6 +12,11 @@ type CheckBoxListType = {
   names: string[];
 };
 
+type ItemsType = {
+  name: string;
+  checked: boolean;
+}[];
+
 const CheckBox = ({
   id,
   value,
@@ -33,45 +38,45 @@ const CheckBox = ({
 };
 
 const CheckBoxList = ({names}: CheckBoxListType) => {
-  const [checkedItems, setCheckedItems] = useState<{[key in string]: boolean}>(
-    {},
+  const [items, setItems] = useState<ItemsType>(
+    names.map((name) => ({
+      name,
+      checked: true,
+    })),
   );
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setCheckedItems({
-      ...checkedItems,
-      [e.target.id]: e.target.checked,
-    });
+    setItems((items) =>
+      items.map((item) => ({
+        ...item,
+        checked: e.target.id === item.name ? e.target.checked : item.checked,
+      })),
+    );
   };
 
   const sendData: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    console.log(checkedItems);
+    console.log(items);
   };
 
   return (
-    <>
-      <form>
-        {names.map((name, index) => {
-          return (
-            <label
-              key={`key_${index}`}
-              className='flex items-center justify-start my-2'
-            >
-              <CheckBox
-                id={`id_${index}`}
-                value={name}
-                onChange={handleChange}
-                checked={checkedItems[name]}
-                className='mr-2'
-              />
-              <div>{name}</div>
-            </label>
-          );
-        })}
-        <button onClick={sendData}>アンケート送信ボタン</button>
-      </form>
-    </>
+    <div>
+      {items.map((item) => (
+        <label key={item.name} className='flex items-center justify-start my-2'>
+          <CheckBox
+            id={item.name}
+            value={item.name}
+            onChange={handleChange}
+            checked={item.checked}
+            className='mr-2'
+          />
+          <div>{item.name}</div>
+        </label>
+      ))}
+      <button onClick={sendData} className='btn btn-primary'>
+        確認
+      </button>
+    </div>
   );
 };
 
