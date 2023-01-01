@@ -2,20 +2,11 @@ import type {NextPage} from 'next';
 import Layout from '../components/layouts/Layout';
 import {useState, MouseEventHandler} from 'react';
 import DateInput from '../components/DateInput';
+import useSites from '../hooks/useSites';
 
 const Home: NextPage = () => {
   const [date, setDate] = useState(new Date());
-
-  const sites = [
-    {
-      name: 'photo',
-      url: 'https://photos.google.com/u/1/search/_d20221225_',
-    },
-    {
-      name: 'calendar',
-      url: 'https://calendar.google.com/calendar/u/0/r/day/2022/12/26',
-    },
-  ];
+  const sites = useSites(date);
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     sites.map((site) => {
@@ -26,7 +17,9 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <DateInput date={date} setDate={setDate} />
-      <button onClick={handleClick}>hoge</button>
+      <button className='btn my-2' onClick={handleClick}>
+        Open Links
+      </button>
     </Layout>
   );
 };
