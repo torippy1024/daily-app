@@ -1,5 +1,6 @@
 import {useState, MouseEventHandler} from 'react';
 import useSites from '../../hooks/useSites';
+import CheckBoxList from '../common/CheckBoxList';
 import DateInput from '../DateInput';
 
 const SitesContainer = () => {
@@ -18,6 +19,7 @@ const SitesContainer = () => {
       <button className='btn my-2' onClick={handleClick}>
         Open Links
       </button>
+      <CheckBoxList names={sites.map((site) => site.name)} />
     </div>
   );
 };
