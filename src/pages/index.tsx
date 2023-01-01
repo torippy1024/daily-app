@@ -1,13 +1,11 @@
 import type {NextPage} from 'next';
 import Layout from '../components/layouts/Layout';
-import {useState} from 'react';
-import DateInput from '../components/DateInput';
+import SitesContainer from '../components/sites';
 
 const Home: NextPage = () => {
-  const [date, setDate] = useState(new Date());
   return (
     <Layout>
-      <DateInput date={date} setDate={setDate} />
+      <SitesContainer />
     </Layout>
   );
 };

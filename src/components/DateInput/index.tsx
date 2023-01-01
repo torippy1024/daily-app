@@ -2,6 +2,7 @@ import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {Dispatch, SetStateAction} from 'react';
 import {format} from 'date-fns';
+import ja from 'date-fns/locale/ja';
 import {AiOutlineCalendar} from 'react-icons/ai';
 
 type DateInputType = {
@@ -15,7 +16,7 @@ const DateInput = ({date, setDate}: DateInputType) => {
   };
 
   const formatDate = (date: Date) => {
-    return format(date, 'yyyy/MM/dd');
+    return format(date, 'yyyy/MM/dd(E)', {locale: ja});
   };
 
   return (
