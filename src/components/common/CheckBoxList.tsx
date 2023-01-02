@@ -1,10 +1,6 @@
-import React, {
-  ChangeEventHandler,
-  MouseEventHandler,
-  Dispatch,
-  SetStateAction,
-} from 'react';
+import React, {ChangeEventHandler, Dispatch, SetStateAction} from 'react';
 import {SitesType} from '../../hooks/useSites';
+import ExternalLink from './ExternalLink';
 
 type CheckBoxType = {
   id: string;
@@ -60,7 +56,7 @@ const CheckBoxList = ({sites, setSites}: CheckBoxListType) => {
             checked={site.checked}
             className='mr-2'
           />
-          <div>{site.name}</div>
+          <ExternalLink href={site.url}>{site.name}</ExternalLink>
         </label>
       ))}
     </div>
