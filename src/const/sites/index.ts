@@ -21,16 +21,19 @@ export const SITE_EXAMPLE_URL = {
 
 export const SITES = [
   {
+    id: 1,
     name: SITES_NAME.GOOGLE_PHOTO,
     baseUrl: SITE_BASE_URL.GOOGLE_PHOTO,
     exampleUrl: SITE_EXAMPLE_URL.GOOGLE_PHOTO,
   },
   {
+    id: 2,
     name: SITES_NAME.GOOGLE_CALENDAR,
     baseUrl: SITE_BASE_URL.GOOGLE_CALENDAR,
     exampleUrl: SITE_EXAMPLE_URL.GOOGLE_CALENDAR,
   },
   {
+    id: 3,
     name: SITES_NAME.GOOGLE_MAIL,
     baseUrl: SITE_BASE_URL.GOOGLE_MAIL,
     exampleUrl: SITE_EXAMPLE_URL.GOOGLE_MAIL,
